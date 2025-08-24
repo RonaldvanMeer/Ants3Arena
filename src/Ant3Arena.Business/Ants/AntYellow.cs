@@ -1,27 +1,28 @@
-﻿using System;
+﻿using Ant3Arena.Business.Interfaces;
 using System.Drawing;
 
-
-namespace Ant_3_Arena.Ants
+namespace Ant3Arena.Business.Ants
 {
-	public class AntRed
+	public class AntYellow : IAnt
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
 		private string Direction { get; set; }
-		private int Verticalvelocity = 6;
-		private int Horizontalvelocity = 6;
-		private readonly string color = "#FF0000";
+		private int Verticalvelocity = 4;
+		private int Horizontalvelocity = 4;
+		private readonly string color = "#FFFF00";
 		private readonly Bitmap antImage;
 
 		public Bitmap AntImage { get { return antImage; } }
 
-		public AntRed(Size borders){
-			Direction = "LeftUp";
+		public AntYellow(Size borders)
+		{
+			Direction = "RightDown";
 			Color newColor = ColorTranslator.FromHtml(color);
 			Color white = ColorTranslator.FromHtml("#FFFFFF");
 
 			Bitmap bmp = new Bitmap(Properties.Resources.Ant);
+
 			for (int x = 0; x < bmp.Width; x++)
 			{
 				for (int y = 0; y < bmp.Height; y++)
@@ -39,8 +40,7 @@ namespace Ant_3_Arena.Ants
 			Y = random.Next(0, borders.Height);
 		}
 
-		public void Move(Size borders)
-		{
+		public void Move(Size borders){
 			switch (Direction)
 			{
 				case "LeftUp":
