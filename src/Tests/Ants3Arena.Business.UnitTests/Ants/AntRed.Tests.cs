@@ -1,9 +1,11 @@
 ﻿using Ant3Arena.Business.Ants;
 using System.Drawing;
+using System.Runtime.Versioning;
 using Xunit;
 
-namespace Ants3Arena.UnitTests.Ants
+namespace Ants3Arena.Business.UnitTests.Ants
 {
+    [SupportedOSPlatform("Windows")]
     public class AntRedTests
     {
         [Fact]
@@ -17,7 +19,7 @@ namespace Ants3Arena.UnitTests.Ants
             Assert.InRange(antRed.X, 0, borders.Width);
             Assert.InRange(antRed.Y, 0, borders.Height);
             Assert.NotNull(antRed.AntImage);
-		}
+        }
 
         [Fact]
         public static void AntBlack_Should_Be_Black()
@@ -57,6 +59,30 @@ namespace Ants3Arena.UnitTests.Ants
             Assert.InRange(antRed.X, 0, borders.Width);
             Assert.InRange(antRed.Y, 0, borders.Height);
             Assert.True(antRed.X != initialX || antRed.Y != initialY, "Ant did not move.");
+        }
+
+        // Extend with al cases, just to give an idea how to handle a single unittest with multiple data sets.
+        [Theory]
+        [InlineData(0, 0, "LeftUp", "RightDown")]
+        [InlineData(0, 225, "LeftUp", "RightUp")]
+        [InlineData(400, 0, "LeftUp", "LeftDown")]
+        [InlineData(800, 0, "RightUp", "LeftDown")]
+        [InlineData(0, 450, "LeftDown", "RightUp")]
+        [InlineData(800, 450, "RightDown", "LeftUp")]
+        public static void AntRed_Top_Bounces_To_Correct_Direction(int x, int y, string origin, string target)
+        {
+            // Arrange
+            var borders = new Size(800, 450);
+            var antRed = new AntRed(borders)
+            {
+                X = x,
+                Y = y,
+                Direction = origin
+            };
+            // Act
+            antRed.Move(borders);
+            // Assert
+            Assert.Equal(target, antRed.Direction);
         }
     }
 }

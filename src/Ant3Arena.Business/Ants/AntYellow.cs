@@ -1,13 +1,15 @@
 ﻿using Ant3Arena.Business.Interfaces;
 using System.Drawing;
+using System.Runtime.Versioning;
 
 namespace Ant3Arena.Business.Ants
 {
-	public class AntYellow : IAnt
+    [SupportedOSPlatform("Windows")]
+    public class AntYellow : IAnt
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
-		internal string Direction { get; set; }
+		public string Direction { get; internal set; }
 		private int Verticalvelocity = 4;
 		private int Horizontalvelocity = 4;
 		private readonly string color = "#FFFF00";
