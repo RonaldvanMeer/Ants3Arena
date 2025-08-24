@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/bin/Debug/net9.0-windows/Ant 3 Arena.dll",
+            "program": "${workspaceFolder}/src/Ants3Arena.FrontEnd/bin/Debug/net9.0-windows/Ant 3 Arena.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src",
+            "cwd": "${workspaceFolder}/src/Ants3Arena.FrontEnd",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
