@@ -34,7 +34,7 @@ namespace Ants3Arena.UnitTests.Ants
                 for (int y = 0; y < antBlack.AntImage.Height; y++)
                 {
                     Color pixelColor = antBlack.AntImage.GetPixel(x, y);
-                    if (pixelColor.A == 0 || pixelColor.R == 0)
+                    if (pixelColor.A == 0 || (pixelColor.R == 0 && pixelColor.G == 0 && pixelColor.B == 0))
                     {
                         continue; // Skip transparent and black pixels (black is the outline)
                     }

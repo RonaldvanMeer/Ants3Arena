@@ -15,3 +15,18 @@ Voor alle duidelijkheid: dit gaat geen psychologische test worden. We willen all
 //BlackAnt3 = new AntBlack(this.ClientSize);
 
 there for in program.cs setting of the size to 800*450
+
+### Adding white ant
+
+Production ready -> Not breaking production
+The existing Black, Red and Yellow ants do overlap on screen.
+Introducing a white ant with the same allowence would not break production.
+
+#### Thinking further
+
+BUT if the ants represent actual machine, the machines would collide into each other.
+Therefor the begin project already contained a bug (allowing ants to crash/walk over another).
+I would introduce a collisionwatcher or some sort, and take evasive actions if the next move would indicate a crash or collision.
+
+Perhaps more context about the assignment would help, describing the entities and what they represent.
+Define production ready.

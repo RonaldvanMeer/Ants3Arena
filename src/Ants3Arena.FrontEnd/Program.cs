@@ -42,8 +42,9 @@ namespace Ant_3_Arena
                         IEnumerable<IAnt> blackAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntBlack(screenSize));
                         IEnumerable<IAnt> redAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntRed(screenSize));
                         IEnumerable<IAnt> yellowAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntYellow(screenSize));
+                        IEnumerable<IAnt> greenAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntWhite(screenSize));
 
-                        return blackAnts.Concat(redAnts).Concat(yellowAnts).ToList();                        
+                        return blackAnts.Concat(redAnts).Concat(yellowAnts).Concat(greenAnts).ToList();                        
                     });
 
                 });

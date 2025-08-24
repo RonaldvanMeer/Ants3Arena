@@ -8,7 +8,7 @@ namespace Ant3Arena.Business.Ants
     {
         public int X { get; set; }
         public int Y { get; set; }
-        private string Direction { get; set; }
+        internal string Direction { get; set; }
         private int Verticalvelocity = 6;
         private int Horizontalvelocity = 6;
         private readonly string color = "#FF0000";

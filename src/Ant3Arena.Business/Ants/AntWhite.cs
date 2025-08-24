@@ -1,23 +1,23 @@
 ﻿using Ant3Arena.Business.Interfaces;
-using System;
 using System.Drawing;
 
 namespace Ant3Arena.Business.Ants
 {
-	public class AntBlack : IAnt
+	public class AntWhite : IAnt
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
 		internal string Direction { get; set; }
-		private int Verticalvelocity = 6;
-		private int Horizontalvelocity = 2;
-		private readonly string color = "#000000";
+		private int Verticalvelocity = 2;
+		private int Horizontalvelocity = 6;
+		private readonly string color = "#FFFFFF";
 		private readonly Bitmap antImage;
+
 		public Bitmap AntImage { get { return antImage; } }
 
-		public AntBlack(Size borders)
+		public AntWhite(Size borders)
 		{
-			Direction = "RightUp";
+			Direction = "LeftDown";
 			Color newColor = ColorTranslator.FromHtml(color);
 			Color white = ColorTranslator.FromHtml("#FFFFFF");
 
@@ -40,52 +40,51 @@ namespace Ant3Arena.Business.Ants
 			Y = random.Next(0, borders.Height);
 		}
 
-		public void Move(Size borders)
-		{
+		public void Move(Size borders){
 			switch (Direction)
 			{
 				case "LeftUp":
 					X = X - Horizontalvelocity;
 					Y = Y - Verticalvelocity;
 
-					if (X < 0 && Y < 500)
+					if (X < 0 && Y < 0)
 						Direction = "RightDown";
 					else if (X < 0)
 						Direction = "RightUp";
-					else if (Y < 500)
+					else if (Y < 0)
 						Direction = "LeftDown";
 					break;
 				case "LeftDown":
 					X = X - Horizontalvelocity;
 					Y = Y + Verticalvelocity;
 
-					if (X < 0 && Y > borders.Height)
+					if (X < 0 && Y > 500)
 						Direction = "RightUp";
 					else if (X < 0)
 						Direction = "RightDown";
-					else if (Y > borders.Height)
+					else if (Y > 500)
 						Direction = "LeftUp";
 					break;
 				case "RightUp":
 					X = X + Horizontalvelocity;
 					Y = Y - Verticalvelocity;
 
-					if (X > borders.Width && Y < 500)
+					if (X > borders.Width && Y < 0)
 						Direction = "LeftDown";
 					else if (X > borders.Width)
 						Direction = "LeftUp";
-					else if (Y < 500)
+					else if (Y < 0)
 						Direction = "RightDown";
 					break;
 				case "RightDown":
 					X = X + Horizontalvelocity;
 					Y = Y + Verticalvelocity;
 
-					if (X > borders.Width && Y > borders.Height)
+					if (X > borders.Width && Y > 500)
 						Direction = "LeftUp";
 					else if (X > borders.Width)
 						Direction = "LeftDown";
-					else if (Y > borders.Height)
+					else if (Y > 500)
 						Direction = "RightUp";
 					break;
 			}
