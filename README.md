@@ -15,4 +15,3 @@ Voor alle duidelijkheid: dit gaat geen psychologische test worden. We willen all
 //BlackAnt3 = new AntBlack(this.ClientSize);
 
 there for in program.cs setting of the size to 800*450
-

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant3Arena.Business", "Ant3A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ants3Arena.UnitTests", "Tests\Ants3Arena.UnitTests\Ants3Arena.UnitTests.csproj", "{B84119D4-30C3-4469-80CB-CBE9A0924840}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ants3Arena.Business.UnitTests", "Tests\Ants3Arena.Business.UnitTests\Ants3Arena.Business.UnitTests.csproj", "{B84119D4-30C3-4469-80CB-CBE9A0924840}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

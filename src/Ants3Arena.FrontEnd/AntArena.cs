@@ -1,10 +1,6 @@
-﻿using Ant_3_Arena.Ants;
-using Ant3Arena.Business.Interfaces;
+﻿using Ant3Arena.Business.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Ant_3_Arena

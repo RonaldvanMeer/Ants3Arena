@@ -1,9 +1,8 @@
 ﻿using Ant3Arena.Business.Interfaces;
-using System;
 using System.Drawing;
 
 
-namespace Ant_3_Arena.Ants
+namespace Ant3Arena.Business.Ants
 {
     public class AntRed : IAnt
     {

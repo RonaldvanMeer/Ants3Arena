@@ -1,4 +1,4 @@
-using Ant_3_Arena.Ants;
+using Ant3Arena.Business.Ants;
 using Ant3Arena.Business.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
