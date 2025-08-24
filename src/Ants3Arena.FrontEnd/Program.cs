@@ -1,8 +1,11 @@
 using Ant_3_Arena.Ants;
+using Ant3Arena.Business.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Ant_3_Arena
@@ -30,20 +33,19 @@ namespace Ant_3_Arena
                 .ConfigureServices((hc, services) =>
                 {
                     Size screenSize = new Size(800, 450); // match setuped in the AntArena.Designer.cs ln 45
+                    int nrOfAntsByColor = 3; // can be configurable with appsettings.json and read via hc.Configuration
 
                     services.AddSingleton<AntArena>();
-                    services.AddTransient((s) =>
+
+                    services.AddSingleton(provider =>
                     {
-                        return new AntBlack(screenSize);
+                        IEnumerable<IAnt> blackAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntBlack(screenSize));
+                        IEnumerable<IAnt> redAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntRed(screenSize));
+                        IEnumerable<IAnt> yellowAnts = Enumerable.Range(0, nrOfAntsByColor).Select(_ => new AntYellow(screenSize));
+
+                        return blackAnts.Concat(redAnts).Concat(yellowAnts).ToList();                        
                     });
-                    services.AddTransient((s) =>
-                    {
-                        return new AntRed(screenSize);
-                    });
-                    services.AddTransient((s) =>
-                    {
-                        return new AntYellow(screenSize);
-                    });
+
                 });
         }
     }

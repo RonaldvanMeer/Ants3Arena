@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Ant3Arena.Business.Interfaces;
+using System;
 using System.Drawing;
 
 namespace Ant_3_Arena.Ants
 {
-	public class AntBlack
+	public class AntBlack : IAnt
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
