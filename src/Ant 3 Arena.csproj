@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <RootNamespace>Ant_3_Arena</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
