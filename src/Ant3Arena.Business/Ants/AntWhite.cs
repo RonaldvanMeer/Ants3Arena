@@ -4,6 +4,10 @@ using System.Runtime.Versioning;
 
 namespace Ant3Arena.Business.Ants
 {
+    /// <summary>
+    /// White ant is boxed between top of the window and height of 500px.
+	/// Has a Horizontal velocity of 6 and Vertical velocity of 2
+    /// </summary>
     [SupportedOSPlatform("Windows")]
     public class AntWhite : IAnt
 	{

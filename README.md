@@ -30,3 +30,10 @@ I would introduce a collisionwatcher or some sort, and take evasive actions if t
 
 Perhaps more context about the assignment would help, describing the entities and what they represent.
 Define production ready.
+
+### Future modifications
+
+- Ants can be configured by using configuration settings, Velocity, Direction and Color.
+- Extract Movement from Ant class, put the movement in a separate class/service, which can be modified & tested more easily.
+- Implement a CollisionWatcher and strategy to avoid collisions.
+- Add logging (Keep track of movement and collisions & resolve (if applicable))
