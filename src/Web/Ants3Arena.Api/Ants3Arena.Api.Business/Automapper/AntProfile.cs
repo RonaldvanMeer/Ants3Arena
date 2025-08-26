@@ -8,8 +8,11 @@ namespace Ants3Arena.Api.Business.Automapper
     {
         public AntProfile()
         {
-            CreateMap<BaseDto, BaseViewModel>().ReverseMap();
             CreateMap<AntDto, AntViewModel>().ReverseMap();
+
+            CreateMap<CreateAntViewModel, AntDto>()
+                .ForMember(d => d.Color, o => o.MapFrom(s => new AntColorDto { Id = s.ColorId }))
+                .ForMember(d => d.Direction, o => o.MapFrom(s => new DirectionDto { Id = s.DirectionId }));
         }
     }
 }

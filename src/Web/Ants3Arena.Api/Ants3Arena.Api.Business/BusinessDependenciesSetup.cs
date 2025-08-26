@@ -39,6 +39,7 @@ namespace Ants3Arena.Api.Business
         {
             // Register other services here
             services
+                .AddTransient<IBaseService<AntDto>, BaseService<AntDto>>()
                 .AddTransient<IBaseService<AntColorDto>, BaseService<AntColorDto>>()
                 .AddTransient<IBaseService<DirectionDto>, BaseService<DirectionDto>>();
             return services;

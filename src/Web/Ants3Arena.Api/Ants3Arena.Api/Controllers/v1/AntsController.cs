@@ -1,4 +1,6 @@
-﻿using Ants3Arena.Api.Models.ViewModels;
+﻿using Ants3Arena.Api.Business.MediatR.Requests;
+using Ants3Arena.Api.Models.Dtos;
+using Ants3Arena.Api.Models.ViewModels;
 using Asp.Versioning;
 using AutoMapper;
 using MediatR;
@@ -23,18 +25,69 @@ namespace Ants3Arena.Api.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<AntViewModel>> GetAntForColorAsync([FromQuery]Guid antColorId, CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<AntViewModel>>> GetAllAntsAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Getting ant for color {AntColorViewModel}", antColorId);
-            return Ok(new AntViewModel
+            _logger.LogInformation("Getting all ants");
+            try
             {
-                Id = Guid.NewGuid(),
-                Name = "Test Ant",
-                Color = new AntColorViewModel { Id = antColorId, Name = "Red", Description = "The color Red."  },
-                Direction = new DirectionViewModel { Id = Guid.NewGuid(), Description= "Move to left up", Name = "LeftUp" },
-                HorizontalVelocity = 1,
-                VerticalVelocity = 1
-            });
+                var request = new GetAllBaseRequest<AntDto>();
+                var response = await _mediator.Send(request, cancellationToken);
+                var result = _mapper.Map<IEnumerable<AntViewModel>>(response.Data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting all ants");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet]
+        [Route("{antId:guid}")]
+        public async Task<ActionResult<AntViewModel>> GetAntByIdAsync([FromRoute] Guid antId, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Getting ant by id {AntId}", antId);
+            try
+            {
+                var request = new GetBaseRequest<AntDto> { Id = antId };
+                var response = await _mediator.Send(request, cancellationToken);
+                if(response.Data == null)
+                {
+                    _logger.LogWarning("Ant not found with id {AntId}", antId);
+                    return NotFound();
+                }
+                var result = _mapper.Map<AntViewModel>(response.Data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting ant by id {AntId}", antId);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AntViewModel>> CreateAntAsync([FromBody]CreateAntViewModel createAntViewModel, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Creating a new ant {Ant}", createAntViewModel);
+            try
+            {
+                var dto = _mapper.Map<AntDto>(createAntViewModel);
+                var request = new SaveBaseRequest<AntDto> { Data = dto };
+                var response = await _mediator.Send(request, cancellationToken);
+                if(response.Data == null)
+                {
+                    _logger.LogWarning("Failed to create a new ant {Ant}", createAntViewModel);
+                    return BadRequest("Failed to create a new ant");
+                }
+                var result = _mapper.Map<AntViewModel>(response.Data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating a new ant");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

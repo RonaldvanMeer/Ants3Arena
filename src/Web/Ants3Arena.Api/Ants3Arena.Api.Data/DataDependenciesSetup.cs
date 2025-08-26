@@ -33,6 +33,7 @@ namespace Ants3Arena.Api.Data
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services
+                .AddTransient<IBaseRepository<AntDto>, AntsRepository>()
                 .AddTransient<IBaseRepository<AntColorDto>, AntColorsRepository>()
                 .AddTransient<IBaseRepository<DirectionDto>, DirectionRepository>();
             return services;
