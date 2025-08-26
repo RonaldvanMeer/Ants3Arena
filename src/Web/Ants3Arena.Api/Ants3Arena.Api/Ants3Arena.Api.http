@@ -1,6 +1,0 @@
-@Ants3Arena.Api_HostAddress = http://localhost:5072
-
-GET {{Ants3Arena.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
