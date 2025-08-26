@@ -18,6 +18,20 @@ namespace Ants3Arena.Api.Business.Services
             _logger = logger;
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entities = await _baseRepository.GetAllAsync(cancellationToken);
+                return _mapper.Map<IEnumerable<T>>(entities);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving all entities");
+                throw;
+            }
+        }
+
         public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             try
@@ -26,7 +40,7 @@ namespace Ants3Arena.Api.Business.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error retrieving ant color by ID");
+                _logger.LogError(ex, "Error retrieving entity by ID");
                 throw;
             }
         }
@@ -39,7 +53,7 @@ namespace Ants3Arena.Api.Business.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error saving ant color");
+                _logger.LogError(ex, "Error saving entity");
                 throw;
             }
         }

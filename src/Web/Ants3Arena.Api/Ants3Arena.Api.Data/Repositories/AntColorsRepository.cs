@@ -2,6 +2,7 @@
 using Ants3Arena.Api.Data.Entities;
 using Ants3Arena.Api.Models.Dtos;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ants3Arena.Api.Data.Repositories
@@ -19,6 +20,12 @@ namespace Ants3Arena.Api.Data.Repositories
             _context = context;
             _mapper = mapper;
             _logger = logger;
+        }
+
+        public async Task<IEnumerable<AntColorDto>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var entities = await _context.AntColors.ToListAsync(cancellationToken);
+            return _mapper.Map<IEnumerable<AntColorDto>>(entities);
         }
 
         public async Task<AntColorDto?> GetByIdAsync(Guid id , CancellationToken cancellationToken)

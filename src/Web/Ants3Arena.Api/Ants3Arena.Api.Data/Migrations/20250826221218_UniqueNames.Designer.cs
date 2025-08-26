@@ -4,6 +4,7 @@ using Ants3Arena.Api.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ants3Arena.Api.Data.Migrations
 {
     [DbContext(typeof(Ant3ArenaContext))]
-    partial class Ant3ArenaContextModelSnapshot : ModelSnapshot
+    [Migration("20250826221218_UniqueNames")]
+    partial class UniqueNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

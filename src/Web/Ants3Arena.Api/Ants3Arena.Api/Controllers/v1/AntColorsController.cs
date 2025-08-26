@@ -26,7 +26,26 @@ namespace Ants3Arena.Api.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<AntColorViewModel>> GetAntColorByIdAsync([FromQuery] Guid antColorId, CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<AntColorViewModel>>> GetAllAntColorsAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Getting all ant colors");
+            try
+            {
+                var request = new GetAllBaseRequest<AntColorDto>();
+                var response = await _mediator.Send(request, cancellationToken);
+                var result = _mapper.Map<IEnumerable<AntColorViewModel>>(response.Data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting all ant colors");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet]
+        [Route("{antColorId:guid}")]
+        public async Task<ActionResult<AntColorViewModel>> GetAntColorByIdAsync(Guid antColorId, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Getting ant color for id {AntColorId}", antColorId);
             try

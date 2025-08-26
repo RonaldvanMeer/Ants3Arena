@@ -6,11 +6,11 @@ using MediatR;
 
 namespace Ants3Arena.Api.Business.Handlers
 {
-    public class GetGetAntColorHandlerBaseHandler : IRequestHandler<GetBaseRequest<AntColorDto>, GetBaseResponse<AntColorDto>>
+    public class GetAntColorHandlerBaseHandler : IRequestHandler<GetBaseRequest<AntColorDto>, GetBaseResponse<AntColorDto>>
     {
         private readonly IBaseService<AntColorDto> _baseService;
 
-        public GetGetAntColorHandlerBaseHandler(IBaseService<AntColorDto> baseService)
+        public GetAntColorHandlerBaseHandler(IBaseService<AntColorDto> baseService)
         {
             _baseService = baseService;
         }

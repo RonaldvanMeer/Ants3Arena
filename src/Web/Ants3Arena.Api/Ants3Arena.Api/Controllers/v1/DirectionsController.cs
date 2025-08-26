@@ -26,17 +26,36 @@ namespace Ants3Arena.Api.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<DirectionViewModel>> GetDirectionByIdAsync([FromQuery]Guid DirectionId, CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<DirectionViewModel>>> GetAllDirectionsAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Getting direction for id {DirectionId}", DirectionId);
+            _logger.LogInformation("Getting all directions");
             try
             {
-                var request = new GetBaseRequest<DirectionDto> { Id = DirectionId };
+                var request = new GetAllBaseRequest<DirectionDto>();
+                var response = await _mediator.Send(request, cancellationToken);
+                var result = _mapper.Map<IEnumerable<DirectionViewModel>>(response.Data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting all directions");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet]
+        [Route("{directionId:guid}")]
+        public async Task<ActionResult<DirectionViewModel>> GetDirectionByIdAsync(Guid directionId, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Getting direction for id {DirectionId}", directionId);
+            try
+            {
+                var request = new GetBaseRequest<DirectionDto> { Id = directionId };
                 var response = await _mediator.Send(request, cancellationToken);
                 if (response.Data == null)
                 {
-                    _logger.LogWarning("Direction with id {DirectionId} not found", DirectionId);
-                    return BadRequest($"Direction with id {DirectionId} not found.");
+                    _logger.LogWarning("Direction with id {DirectionId} not found", directionId);
+                    return BadRequest($"Direction with id {directionId} not found.");
                 }
 
                 var result = _mapper.Map<DirectionViewModel>(response.Data);
@@ -44,7 +63,7 @@ namespace Ants3Arena.Api.Controllers.v1
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error getting direction for id {DirectionId}", DirectionId);
+                _logger.LogError(ex, "Error getting direction for id {DirectionId}", directionId);
                 return StatusCode(500, "Internal server error");
             }
         }
