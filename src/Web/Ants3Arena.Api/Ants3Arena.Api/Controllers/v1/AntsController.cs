@@ -14,6 +14,7 @@ namespace Ants3Arena.Api.Controllers.v1
         private readonly ILogger<AntsController> _logger;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
+
         public AntsController(ILogger<AntsController> logger, IMapper mapper, IMediator mediator)
         {
             _logger = logger;
@@ -22,15 +23,15 @@ namespace Ants3Arena.Api.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<AntViewModel>> GetAntForColorAsync([FromQuery]AntColorViewModel antColorViewModel, CancellationToken cancellationToken)
+        public async Task<ActionResult<AntViewModel>> GetAntForColorAsync([FromQuery]Guid antColorId, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Getting ant for color {AntColorViewModel}", antColorViewModel);
+            _logger.LogInformation("Getting ant for color {AntColorViewModel}", antColorId);
             return Ok(new AntViewModel
             {
                 Id = Guid.NewGuid(),
                 Name = "Test Ant",
-                Color = antColorViewModel,
-                Direction = DirectionViewModel.LeftUp,
+                Color = new AntColorViewModel { Id = antColorId, Name = "Red", Description = "The color Red."  },
+                Direction = new DirectionViewModel { Id = Guid.NewGuid(), Description= "Move to left up", Name = "LeftUp" },
                 HorizontalVelocity = 1,
                 VerticalVelocity = 1
             });

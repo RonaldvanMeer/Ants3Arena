@@ -1,10 +1,7 @@
 ﻿namespace Ants3Arena.Api.Models.ViewModels
 {
-    public enum DirectionViewModel
+    public class DirectionViewModel : BaseViewModel
     {
-        RightUp,
-        LeftUp,
-        LeftDown,
-        RightDown
+        public string Description { get; set; } = string.Empty;
     }
 }

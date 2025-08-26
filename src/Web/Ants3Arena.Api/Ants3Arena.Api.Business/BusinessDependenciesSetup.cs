@@ -1,4 +1,6 @@
-﻿using Ants3Arena.Api.Data;
+﻿using Ants3Arena.Api.Business.Services;
+using Ants3Arena.Api.Data;
+using Ants3Arena.Api.Models.Dtos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -36,6 +38,9 @@ namespace Ants3Arena.Api.Business
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             // Register other services here
+            services
+                .AddTransient<IBaseService<AntColorDto>, BaseService<AntColorDto>>()
+                .AddTransient<IBaseService<DirectionDto>, BaseService<DirectionDto>>();
             return services;
         }
     }

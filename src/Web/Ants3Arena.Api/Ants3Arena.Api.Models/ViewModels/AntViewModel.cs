@@ -2,9 +2,9 @@
 {
     public class AntViewModel : BaseViewModel
     {
-        public DirectionViewModel Direction { get; set; }
+        public DirectionViewModel Direction { get; set; } = new DirectionViewModel();
         public int VerticalVelocity { get; set; }
         public int HorizontalVelocity { get; set; }
-        public AntColorViewModel Color { get; set; }
+        public AntColorViewModel Color { get; set; } = new AntColorViewModel();
     }
 }

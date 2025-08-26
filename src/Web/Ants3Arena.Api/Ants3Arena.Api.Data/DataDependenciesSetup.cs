@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Ants3Arena.Api.Data.Contexts;
+using Ants3Arena.Api.Data.Repositories;
+using Ants3Arena.Api.Models.Dtos;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ants3Arena.Api.Data
@@ -16,18 +20,21 @@ namespace Ants3Arena.Api.Data
 
         private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<ExternalAuthenticationDbContext>(options =>
-            //{
-            //    options
-            //        .UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
-            //        .UseLazyLoadingProxies();
-            //});
+            services.AddDbContext<Ant3ArenaContext>(options =>
+            {
+                options
+                    .UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+                    .UseLazyLoadingProxies();
+            });
 
             return services;
         }
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services
+                .AddTransient<IBaseRepository<AntColorDto>, AntColorsRepository>()
+                .AddTransient<IBaseRepository<DirectionDto>, DirectionRepository>();
             return services;
         }
     }

@@ -1,10 +1,7 @@
 ﻿namespace Ants3Arena.Api.Models.ViewModels
 {
-    public enum AntColorViewModel
+    public class AntColorViewModel : BaseViewModel
     {
-        Red,
-        Green,
-        Yellow,
-        White
+        public string Description { get; set; } = string.Empty;
     }
 }
