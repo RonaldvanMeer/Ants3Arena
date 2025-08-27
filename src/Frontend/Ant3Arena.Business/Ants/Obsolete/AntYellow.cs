@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.Versioning;
 
-namespace Ant3Arena.Business.Ants
+namespace Ant3Arena.Business.Ants.Obsolete
 {
     [SupportedOSPlatform("Windows")]
     public class AntYellow : IAnt
@@ -35,7 +35,7 @@ namespace Ant3Arena.Business.Ants
 				}
 			}
 
-			this.antImage = bmp;
+			antImage = bmp;
 
 			Random random = new Random();
 			X = random.Next(0, borders.Width);

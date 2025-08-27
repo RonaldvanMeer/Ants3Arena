@@ -1,9 +1,9 @@
-﻿using Ant3Arena.Business.Ants;
+﻿using Ant3Arena.Business.Ants.Obsolete;
 using System.Drawing;
 using System.Runtime.Versioning;
 using Xunit;
 
-namespace Ants3Arena.Business.UnitTests.Ants
+namespace Ants3Arena.Business.UnitTests.Ants.Obsolete
 {
     [SupportedOSPlatform("Windows")]
     public class AntBlackTests

@@ -1,9 +1,9 @@
-﻿using Ant3Arena.Business.Ants;
+﻿using Ant3Arena.Business.Ants.Obsolete;
 using System.Drawing;
 using System.Runtime.Versioning;
 using Xunit;
 
-namespace Ants3Arena.Business.UnitTests.Ants
+namespace Ants3Arena.Business.UnitTests.Ants.Obsolete
 {
     [SupportedOSPlatform("Windows")]
     public class AntWhiteTests
@@ -36,7 +36,7 @@ namespace Ants3Arena.Business.UnitTests.Ants
                 for (int y = 0; y < antWhite.AntImage.Height; y++)
                 {
                     Color pixelColor = antWhite.AntImage.GetPixel(x, y);
-                    if (pixelColor.A == 0 || (pixelColor.R == 0 && pixelColor.G == 0 && pixelColor.B == 0))
+                    if (pixelColor.A == 0 || pixelColor.R == 0 && pixelColor.G == 0 && pixelColor.B == 0)
                     {
                         continue; // Skip transparent pixels
                     }
